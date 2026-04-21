@@ -1,0 +1,32 @@
+<?php
+
+declare(strict_types=1);
+
+function database_connection(array $config): PDO
+{
+    static $pdo = null;
+
+    if ($pdo instanceof PDO) {
+        return $pdo;
+    }
+
+    $db = $config['database'];
+    $dsn = sprintf(
+        'mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4',
+        $db['host'],
+        $db['port'],
+        $db['name']
+    );
+
+    $pdo = new PDO(
+        $dsn,
+        (string) $db['user'],
+        (string) $db['pass'],
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]
+    );
+
+    return $pdo;
+}

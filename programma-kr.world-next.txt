@@ -1,0 +1,1050 @@
+KR WORLD — BLOCCO CODEX COMPLETO
+VERSIONE MASTER CONSOLIDATA
+
+==================================================
+FASE 1 / BLOCCO 1 — BASE OBBLIGATORIA DI AVVIO
+==================================================
+
+Questo è il primo blocco da fare.
+È la base tecnica e logica minima su cui deve poggiare tutto il resto.
+
+OBIETTIVO DEL BLOCCO
+Creare una base locale solida, coerente con il futuro hosting Aruba e con MySQL Aruba, definire una struttura cartelle ordinata per responsabilità reali, valutare correttamente il database e ottenere una home minima raggiungibile da usare come primo punto di ingresso reale del progetto.
+
+1. INFRASTRUTTURA LOCALE
+
+1.1 Accesso locale basato su IP reali
+- l’ambiente locale deve essere pensato per accesso reale in LAN
+- localhost e 127.0.0.1 valgono solo sulla macchina host
+- da cellulare o tablet il progetto deve essere raggiungibile tramite IP del PC host
+- l’accesso deve quindi essere compatibile con uso multi-dispositivo in rete locale
+
+1.2 Coerenza con QR code
+- i QR code in locale non devono puntare a localhost o 127.0.0.1
+- devono puntare all’IP della macchina host
+- questo è fondamentale perché i QR vengono scansionati da dispositivi esterni
+- la logica URL deve essere coerente con il contesto:
+  - locale/LAN → IP host locale
+  - live/hosting → dominio reale
+
+1.3 Coerenza ambienti
+- la base locale non deve essere progettata in modo incompatibile con l’ambiente live
+- bisogna evitare soluzioni che funzionano solo in locale ma si rompono o diventano scomode in hosting
+
+2. COMPATIBILITÀ HOSTING E DATABASE
+
+2.1 Hosting target
+- il progetto finale deve girare su Aruba
+
+2.2 Database target
+- il database deve essere compatibile con MySQL Aruba
+
+2.3 Vincolo architetturale
+- ogni scelta iniziale del progetto deve essere valutata già in funzione del target reale
+- non vanno introdotte soluzioni che dipendono da infrastrutture diverse o incompatibili con Aruba
+
+3. STRUTTURA CARTELLE
+
+3.1 Principio generale
+- la struttura cartelle non deve essere organizzata solo in modo tecnico generico
+- deve riflettere responsabilità reali del progetto
+
+3.2 Separazioni obbligatorie
+La struttura deve separare in modo netto almeno queste aree concettuali:
+- pubblico/rendering
+- admin
+- template
+- skin
+- asset modulari
+- servizi
+- automazioni
+- live hub
+- sandbox/design lab
+
+3.3 Obiettivo della struttura cartelle
+- evitare monoliti
+- evitare confusione tra logiche diverse
+- evitare crescita caotica
+- preparare un sistema modulare, estensibile e coerente
+
+4. DATABASE
+
+4.1 Principio
+- il vecchio database non è intoccabile
+
+4.2 Regola
+- se il vecchio DB è coerente con la nuova architettura, si può riutilizzare
+- se non è coerente, si riscrive
+
+4.3 Priorità
+- la priorità è la coerenza architetturale
+- non il riuso forzato
+
+4.4 Valutazione richiesta
+In questa fase va fatta una valutazione concreta del DB esistente per capire:
+- cosa è riutilizzabile
+- cosa è incoerente
+- cosa va rifatto
+- cosa va semplificato o separato meglio
+
+5. HOME MINIMA RAGGIUNGIBILE
+
+5.1 Obiettivo
+- ottenere una home base raggiungibile in locale
+
+5.2 Requisiti
+- URL coerente con la struttura attuale del progetto
+- punto di ingresso reale del sito
+- base solida su cui innestare poi sandbox/design lab
+
+5.3 Funzione strategica
+- la home minima non è la home finale completa
+- è il primo punto vivo e verificabile del nuovo KR World
+- serve come prova di corretto avvio dell’infrastruttura, della struttura cartelle e della base del sistema
+
+RISULTATO ATTESO DEL BLOCCO 1
+Alla fine del Blocco 1 devono essere chiariti o impostati questi punti:
+- ambiente locale raggiungibile correttamente via IP host
+- logica QR locale coerente
+- compatibilità garantita con Aruba e MySQL Aruba
+- struttura cartelle definita per responsabilità reali
+- decisione sul riuso o riscrittura del DB
+- home minima raggiungibile come primo punto reale del progetto
+
+NOTA DI PRIORITÀ
+Questo blocco viene prima di:
+- sandbox/design lab
+- progettazione sezioni avanzate
+- progettazione template avanzati
+- admin operativo completo
+- parser chart
+- live hub evoluto
+
+Senza questo blocco, il resto rischia di poggiare su una base instabile.
+
+==================================================
+FASE 2 / BLOCCO 2 — SANDBOX / AMBIENTE PROJECT / DESIGN LAB
+==================================================
+
+Questo è il secondo blocco operativo.
+Deve nascere subito dopo la base del Blocco 1.
+
+OBIETTIVO DEL BLOCCO
+Creare un ambiente interno di progettazione separato dal frontend pubblico e distinto dall’admin operativo, capace di progettare sezioni, template e skin, visualizzarli in preview immediata, salvarli come modelli compatibili col sito e renderli poi richiamabili nell’admin.
+
+6. PRINCIPIO GENERALE DELLA SANDBOX
+
+6.1 La sandbox deve stare a monte dell’admin operativo
+- non è admin finale
+- non è frontend pubblico
+- è ambiente di progettazione controllato
+
+6.2 Funzione della sandbox
+- progettazione sezioni pagina
+- progettazione template
+- progettazione skin
+- test di composizione
+- preview immediata
+- validazione prima dell’integrazione nell’admin
+
+6.3 Flusso corretto
+- progettazione
+- test
+- correzione
+- validazione
+- salvataggio modello
+- richiamo nell’admin
+
+7. FORMA DELL’AMBIENTE
+
+7.1 La sandbox può essere implementata come plugin/modulo interno del progetto
+- purché resti separata logicamente da:
+  - sito pubblico
+  - admin operativo
+
+7.2 Deve però lavorare nello stesso ecosistema del sito
+- i modelli salvati devono essere compatibili col sistema reale
+- non deve produrre prototipi scollegati o da rifare a mano
+
+7.3 La sandbox non deve essere ambiente di prova “a perdere”
+Deve produrre elementi reali riusabili.
+
+8. MODELLI E STATI
+
+8.1 Tipi di modelli salvabili
+- modelli di sezione
+- modelli di template
+- modelli di skin
+- configurazioni modulari ricorrenti
+
+8.2 Stati previsti
+- bozza
+- validato
+- pronto per integrazione
+
+8.3 Obiettivo finale
+- progettare con componenti reali del sistema
+- vedere subito il risultato
+- salvare modelli compatibili col sito
+- richiamarli poi nell’admin senza rifare il lavoro
+
+9. DATI DEMO E CONTRATTO DATI
+
+9.1 La sandbox deve lavorare con dati demo/mock realistici
+
+9.2 Le sezioni progettate in sandbox non devono essere solo gusci grafici
+Devono definire anche il proprio contratto dati:
+- quali dati leggono
+- da quale sorgente
+- quali campi usano
+- se lavorano su record singolo o lista
+- quali relazioni usano
+- quali filtri applicano
+- quali campi sono obbligatori
+- quali opzionali
+- eventuali fallback
+
+9.3 Devono esistere placeholder / binding dinamici per:
+- dati singoli della pagina corrente
+- dati relazionali
+- liste/collezioni
+- dati contestuali
+- sorgenti configurabili
+
+9.4 Le sezioni non devono produrre solo layout
+Devono produrre:
+- struttura visuale
+- configurazione
+- contratto dati
+
+10. SELEZIONE DIRETTA DATI DAL DB
+
+10.1 Nella sandbox deve essere possibile selezionare direttamente dati reali del sistema/DB e posizionare i relativi campi nel layout
+
+10.2 Flusso previsto
+- scelta sorgente dati
+- scelta tabella/dataset
+- scelta campo o gruppo di campi
+- creazione del placeholder bindato
+- posizionamento via drag and drop
+- regolazione dimensionale e visuale
+- rendering nella sezione/template
+
+10.3 Per ogni campo bindato devono essere gestibili almeno:
+- sorgente dati
+- tabella/dataset
+- nome campo
+- eventuale alias visuale
+- tipo campo
+- slot/contenitore
+- posizione
+- larghezza
+- eventuale altezza
+- allineamento
+- visibilità
+- fallback
+
+10.4 Questo vale per:
+- campi semplici
+- campi media
+- campi relazionali
+- liste/collezioni
+
+10.5 I campi media devono supportare anche:
+- crop
+- ratio
+- focus
+- cover/contain
+- eventuale caption
+
+10.6 La sandbox deve quindi prevedere:
+- pannello sorgenti dati
+- libreria campi bindabili
+- area di composizione drag and drop
+- pannello proprietà/dimensioni
+
+11. DRAG AND DROP E GRIGLIA
+
+11.1 Le sezioni nella sandbox devono supportare drag and drop per:
+- blocchi/moduli
+- placeholder dati
+- placeholder relazionali
+- media
+- componenti visuali
+- spostamento tra righe/colonne/slot
+
+11.2 Il drag and drop deve essere guidato da contenitori/slot strutturali
+- non completamente libero in modo caotico
+
+11.3 Deve esistere una griglia di aggancio / snap grid
+- attivabile
+- disattivabile
+
+11.4 Modalità ideali della griglia
+- snap forte
+- snap morbido
+- snap off
+
+11.5 Principio
+- la griglia deve aiutare allineamento e ordine visivo
+- non deve irrigidire il lavoro inutilmente
+- anche con griglia off il sistema deve restare coerente con slot e rendering reale
+
+12. CONTROLLI DIMENSIONALI E MISURE
+
+12.1 Nella sandbox devono esistere controlli su:
+- larghezza
+- altezza
+- min/max width
+- min/max height
+- margini
+- padding
+- gap
+- allineamenti
+- posizionamento
+- dimensioni media
+- aspect ratio
+- crop/focus immagini
+
+12.2 Sistema di misura consigliato
+- preset coerenti
+- possibilità custom
+- uso di:
+  - percentuali
+  - pixel
+
+12.3 Principio consigliato
+- preset + custom
+- uso semplice per casi comuni
+- controllo preciso dove necessario
+
+13. CROP IMMAGINI
+
+13.1 Deve esistere una procedura grafica dedicata al crop immagini
+
+13.2 Il crop immagini è una logica trasversale riusabile, non un dettaglio locale sporco
+
+13.3 Obiettivo
+- focalizzare la parte utile dell’immagine dentro una cornice dinamica
+
+13.4 Parametri minimi previsti
+- x
+- y
+- scale
+
+14. CSS NELLA SANDBOX
+
+14.1 Nel sandbox il CSS non deve essere gestito come scrittura libera e diffusa di regole ovunque
+
+14.2 Deve essere gestito principalmente tramite:
+1. controlli visuali strutturati
+2. preset/classi richiamabili
+3. override locali controllati
+4. eventuale livello avanzato opzionale per casi particolari
+
+14.3 Controlli visuali previsti nel sandbox
+- colori
+- font
+- spaziature
+- larghezze
+- altezze
+- bordi
+- radius
+- ombre
+- allineamenti
+- background
+- comportamento media
+
+14.4 Il sandbox deve salvare non solo “CSS”, ma configurazioni stilistiche strutturate compatibili con il sistema reale
+
+14.5 Ogni modifica visuale deve poter essere attribuita chiaramente a uno di questi livelli:
+- sezione
+- template
+- skin
+- componente
+- override locale
+
+14.6 Principio
+- sandbox CSS = motore di styling visuale controllato
+- non editor anarchico di CSS
+
+15. COLOR PICKER E FONT PICKER
+
+15.1 La sandbox deve prevedere anche controlli per colori e font
+
+15.2 Colori gestibili almeno:
+- colore testo
+- colore sfondo
+- colore accento
+- colore bordo
+- overlay
+- eventuali stati hover/active
+
+15.3 Font / tipografia gestibili almeno:
+- font family
+- peso
+- dimensione
+- line-height
+- tracking
+- stili per titolo, sottotitolo, testo, label, ecc.
+
+15.4 Colori e font devono seguire tre livelli:
+1. stile di sistema
+2. stile skin
+3. override locale controllato
+
+15.5 Approccio consigliato:
+- palette di sistema
+- palette skin
+- custom override quando necessario
+- font di sistema
+- preset tipografici coerenti
+- override controllato dove serve
+
+16. RISULTATO ATTESO DEL BLOCCO 2
+
+Alla fine del Blocco 2 devono essere chiariti o impostati questi punti:
+- esistenza di una sandbox/design lab separata dall’admin operativo
+- possibilità di progettare sezioni, template e skin
+- preview immediata
+- uso di dati demo realistici
+- definizione del contratto dati delle sezioni
+- selezione diretta di dati DB e binding dei campi
+- drag and drop di blocchi, dati e media
+- griglia snap attivabile/disattivabile
+- controlli dimensionali e visuali
+- crop immagini
+- salvataggio modelli compatibili col sito
+- richiamo dei modelli dall’admin
+
+NOTA DI PRIORITÀ
+Questo blocco viene dopo il Blocco 1 e prima di:
+- admin operativo completo
+- parser chart
+- live hub evoluto
+- raffinatezze SEO/tag/query
+- espansione avanzata dei moduli di dominio
+
+Senza questo blocco, template e sezioni rischiano di nascere in modo sporco o non riusabile.
+
+==================================================
+BLOCCO 3 — PRINCIPI, STRUTTURA E VALUTAZIONI SUCCESSIVE
+==================================================
+
+Tutto ciò che segue è già definito come base progettuale, ma va trattato come materiale strutturale da valutare e implementare dopo i Blocchi 1 e 2.
+
+17. URL LIVE DA MANTENERE
+- gli URL attuali live vanno mantenuti
+- base URL pubblica attuale:
+  - /kr-world = home hub
+  - /page?slug=... = contenitore attuale delle pagine generiche/editoriali/chart
+  - /event?slug=... = eventi singoli
+- conseguenza:
+  la nuova architettura deve evolvere a partire da questi URL senza stravolgerli
+
+18. CRESCITA DA ADMIN E NIENTE HARDCODE
+- il sito deve crescere da admin
+- niente hardcode come principio strutturale
+- questo vale per:
+  - pagine
+  - template
+  - skin
+  - sezioni
+  - relazioni
+  - asset
+  - navigazione
+  - blocchi interni di pagina
+  - comportamenti ricorrenti
+
+19. STRATO PUBBLICO E LIVE HUB NASCOSTO
+KR World non coincide solo con il sito pubblico.
+Esistono due macro-strati distinti:
+
+STRATO PUBBLICO
+- home
+- pagine editoriali/generiche
+- chart
+- eventi
+- contenuti indicizzabili
+
+STRATO LIVE HUB NASCOSTO
+- parte non pubblica
+- non indicizzabile
+- dedicata a logiche operative live
+
+20. MODULI PRESENTI O PREVISTI NEL LIVE HUB
+- karaoke live con richieste via QR code
+- screen esterno
+- admin gestione richieste karaoke
+- modulo voto tipo POMOFIORE
+- richieste brani da ballare con logica simile al karaoke
+- game live tipo ChillQuiz / I Cervelloni
+
+21. AUTOMAZIONI NEL LIVE HUB
+- nel live hub possono esistere automazioni
+- non vanno considerate automazioni trasversali globali del progetto
+- esempi:
+  - automazioni karaoke
+  - automazioni richieste ballo
+  - automazioni voto/show
+  - automazioni game/quiz
+
+22. DISTINZIONE GENERALE SERVIZI / AUTOMAZIONI
+Esistono tre livelli distinti da non confondere:
+- servizi/logiche trasversali vere, comuni al progetto
+- servizi specifici di dominio pubblico/editoriale
+- automazioni verticali del live hub
+
+23. PAGINE COME ENTITÀ AMMINISTRABILI
+Una pagina non deve essere solo uno slug con contenuto.
+Deve essere un’entità strutturata con almeno:
+- slug
+- template
+- skin
+- famiglia
+- contenuti
+- eventuali asset dedicati
+- eventuali relazioni
+- eventuali tag
+
+24. /page?slug=... COME RENDERER DINAMICO
+- /page?slug=... non va più inteso come semplice contenitore generico
+- deve diventare un renderer dinamico di pagine definite da admin
+
+25. TEMPLATE E SKIN DA ADMIN
+Le pagine devono essere:
+- creabili da admin
+- modificabili da admin
+- renderizzate tramite template gestibili
+
+Anche le skin devono essere:
+- creabili da admin
+- modificabili da admin
+- associabili a pagine o famiglie di pagine
+
+Principio:
+- template = struttura
+- skin = veste
+- le skin non devono rompere i template
+
+26. CORNICE BASE TEMPLATE PAGINA
+Template pagina base:
+- Header
+- Hero / testata pagina
+- Sezioni centrali modulari
+- Contenuto principale
+- Collegamenti a pagine correlate
+- FAQ
+- Footer
+
+27. REGOLA SUI BLOCCHI INTERNI DEL TEMPLATE
+Tutto ciò che sta dentro la pagina, oltre alla cornice base, non deve essere hardcodato.
+Deve essere:
+- un modulo pagina specifico
+oppure
+- un elemento coerente gestito da admin
+
+Questo vale anche per:
+- breadcrumb
+- highlight
+- media block
+- CTA contestuale
+- relazioni tra contenuti
+- FAQ
+- navigazione interna
+
+28. REGOLA GENERALE SUI MODULI
+- ogni pagina è composta da moduli
+- i moduli si dividono in:
+  - moduli base riusabili
+  - moduli specifici di dominio
+  - moduli di servizio/navigazione
+
+29. TIPI DI MODULI PAGINA PREVISTI
+
+MODULI DI INTESTAZIONE
+- hero base
+- hero con cover
+- hero con metadati
+- titolo + sottotitolo
+- intro breve
+- breadcrumb
+
+MODULI DI CONTENUTO TESTUALE
+- testo libero
+- testo strutturato
+- blocco evidenza
+- citazione
+- nota
+- box informativo
+- accordion testo
+
+MODULI MEDIA
+- immagine singola
+- galleria immagini
+- video/embed
+- cover con crop focalizzato
+- media con caption
+- slider visual
+- background visual block
+
+MODULI RELAZIONALI
+- pagine correlate
+- eventi collegati
+- chart collegate
+- recap collegati
+- playlist collegate
+- contenuti dello stesso cluster
+- link contestuali
+
+MODULI ELENCO/CARD
+- griglia card
+- lista verticale
+- slider card
+- mini card compatte
+- elenco con icone
+- top list
+- ranking list
+
+MODULI CHART-SPECIFIC
+- tabella chart
+- top 10 / top 20
+- new entry
+- salite/discese
+- focus brano
+- fonte chart
+- data aggiornamento
+- note editoriali chart
+
+MODULI EVENTO-SPECIFIC
+- scheda evento
+- data/ora/venue
+- info ingresso
+- lineup
+- programma
+- CTA evento
+- evento correlato
+- stato evento
+
+MODULI RECAP-SPECIFIC
+- summary recap
+- momenti chiave
+- top brani
+- top performer
+- gallery recap
+- video recap
+- dati serata
+- collegamento al prossimo evento
+
+MODULI FAQ/UTILITÀ
+- FAQ
+- domande a fisarmonica
+- glossario breve
+- how it works
+- info pratiche
+- contatti rapidi
+
+MODULI CTA/CONVERSIONE
+- CTA singola
+- CTA multiple
+- bottone contatto
+- WhatsApp/social
+- vai a chart
+- vai a evento
+- vai a karaoke
+- scopri altro
+
+MODULI NAVIGAZIONE INTERNA
+- indice sezione
+- anchor menu
+- tab navigazione
+- step navigation
+- selettore contenuti correlati
+
+MODULI LIVE HUB
+- lista richieste karaoke
+- form richiesta QR
+- lista richieste ballo
+- screen live block
+- classifica/voto
+- stato sessione
+- blocco game live
+
+30. COMPONENTI GRAFICI INSERIBILI NELLE SEZIONI
+
+COMPONENTI DI STRUTTURA VISIVA
+- contenitore
+- griglia
+- colonne
+- stack verticale
+- riga orizzontale
+- spacer
+- separatore
+- wrapper full width
+- wrapper boxed
+- overlay layer
+
+COMPONENTI TIPOGRAFICI
+- titolo
+- sottotitolo
+- occhiello
+- paragrafo
+- testo evidenza
+- citazione
+- nota
+- label
+- badge testuale
+- microcopy
+
+COMPONENTI IMMAGINE/MEDIA
+- immagine singola
+- immagine con crop focalizzato
+- cover hero
+- galleria
+- slider immagini
+- video embed
+- media con caption
+- background image block
+- media split text-image
+- poster/locandina
+
+COMPONENTI CARD
+- card semplice
+- card immagine + testo
+- card evento
+- card chart
+- card recap
+- card correlato
+- card compatta
+- card highlight
+- card CTA
+- card stat
+
+COMPONENTI NAVIGAZIONE
+- menu locale
+- anchor menu
+- tab
+- breadcrumb
+- paginazione
+- switch vista
+- filtri
+- ordinamento
+- selettore contenuti
+- relazioni/correlati
+
+COMPONENTI AZIONE
+- bottone
+- gruppo bottoni
+- link evidenziato
+- CTA block
+- social buttons
+- WhatsApp button
+- QR block
+- share block
+- action bar
+
+COMPONENTI DATI/INFORMAZIONE
+- lista
+- tabella
+- tabella chart
+- accordion
+- faq list
+- info grid
+- metadati evento
+- statistiche
+- ranking
+- timeline
+
+COMPONENTI DECORATIVI CONTROLLATI
+- divider grafico
+- cornice
+- background texture
+- gradiente
+- glow soft
+- ombra controllata
+- icona decorativa
+- pattern
+- shape accent
+- overlay colore
+
+COMPONENTI DOMINIO-SPECIFICI
+Chart:
+- tabella chart
+- top positions
+- new entry badge
+- trend up/down
+- fonte chart
+- data update
+
+Eventi:
+- data/ora
+- venue block
+- lineup
+- info ingresso
+- stato evento
+
+Recap:
+- summary
+- momenti chiave
+- top brani
+- gallery recap
+- video recap
+
+Live hub:
+- lista richieste
+- screen panel
+- stato sessione
+- classifica
+- blocco voto
+- form richiesta
+
+COMPONENTI IDENTITÀ VISUALE
+- logo block
+- section header branded
+- badge brand
+- accent line
+- palette block
+- skin wrapper
+- hero visual branded
+
+Principio:
+i componenti grafici delle sezioni devono essere modulari, riusabili, amministrabili e non hardcodati.
+
+31. MEDIA ANNEGATI NEL TESTO
+Sono ammessi ma devono essere trattati come componenti/moduli coerenti, non come inserimenti sporchi.
+
+Componenti media nel testo:
+- immagine inline
+- immagine flottante
+- media con caption nel flusso
+- video/embed inline
+- mini gallery nel testo
+- blocco media + testo integrato
+
+32. NAVIGAZIONE E MENÙ
+
+La navigazione deve essere considerata parte strutturale del sistema.
+
+Va distinta in più livelli:
+
+NAVIGAZIONE GLOBALE
+- menu principale header
+- eventuale menu secondario
+- navigazione footer
+- menu mobile
+
+NAVIGAZIONE DI SEZIONE
+- menu hub di sezione
+- menu di famiglia
+- menu locale di pagina madre
+
+NAVIGAZIONE INTERNA DI PAGINA
+- anchor menu
+- indice sezione
+- tab menu
+- stepper/progress menu
+- side menu contestuale
+
+NAVIGAZIONE RELAZIONALE
+- menu correlati
+- menu cluster
+- menu cross-content
+- menu “continua da qui”
+
+NAVIGAZIONE FUNZIONALE
+- menu filtri
+- menu ordinamento
+- menu switch vista
+- menu azioni rapide
+
+NAVIGAZIONE DOMINIO-SPECIFICA
+- menu chart
+- menu eventi
+- menu recap
+- menu live hub
+
+NAVIGAZIONE DI GESTIONE
+- menu admin operativo
+- menu design lab
+- menu di contesto
+
+Principio:
+- la navigazione globale appartiene alla struttura del sito
+- la navigazione interna e contestuale deve essere modulare e coerente
+- niente menu hardcodati in modo sporco dentro le pagine
+
+33. DIREZIONE GRAFICA MENÙ PRINCIPALE
+- header dark
+- compatto
+- orizzontale
+- sticky
+- tipografia pulita
+- accento luminoso minimo
+- stile editoriale-musicale moderno
+- niente effetti pesanti o troppo dispersivi
+
+34. DOMINIO CHART
+
+Il parser delle chart musicali è un servizio specifico del dominio Chart.
+Non è una automazione trasversale generica.
+
+Il parser Chart:
+- non deve stare nei template
+- non deve stare nelle skin
+- non deve stare nel rendering pagina
+- non deve stare nelle automazioni trasversali comuni del sito
+
+La logica Chart deve restare semplice e lineare:
+input → parser corretto → estrazione dati chart → normalizzazione → rendering pagina
+
+Il rendering pagina non deve parsare nulla.
+La pagina deve solo ricevere dati già pronti.
+
+35. PARSER CHART NON MONOLITICO
+
+Il sistema Chart non deve avere un parser unico monolitico.
+Deve essere strutturato come insieme di parser separati per tipologia di sorgente.
+
+Macro-tipologie parser Chart:
+- parser da testo
+- parser da URL
+- parser da playlist YouTube
+- parser da playlist Spotify
+
+Ogni tipologia di input deve avere il suo parser dedicato, con logica propria separata.
+
+36. PARSER URL PER SORGENTE
+Il parser URL non deve essere un parser unico generico.
+Deve essere una famiglia di parser distinti per sorgente specifica.
+
+Esempi:
+- parser URL Billboard
+- parser URL Pollstar
+- parser URL altra sorgente specifica
+
+Regola iniziale:
+si separa tutto.
+Eventuali accorpamenti si valutano solo dopo, se l’esperienza reale dimostra che due sorgenti condividono davvero una logica compatibile.
+
+37. TAG, LESSICO, QUERY
+
+I tag vanno gestiti da admin.
+
+I tag non devono sostituire:
+- tipo contenuto
+- famiglia
+- template
+- skin
+- gerarchia del sito
+
+Funzione corretta dei tag:
+- supporto semantico leggero
+- relazioni tra contenuti
+- filtri admin
+- aggregazioni coerenti
+- moduli correlati
+- cluster tematici
+
+Regole sui tag:
+- vocabolario controllato
+- niente caos di sinonimi e doppioni
+- niente uso strutturale al posto di campi veri
+- niente pagine tag inutili solo per fare query
+
+I tag possono aiutare in modo discreto a rafforzare query e temi del sito,
+ma non vanno trattati come trucco SEO autonomo.
+
+I tag aiutano soprattutto come moltiplicatori di coerenza interna,
+non come base dell’architettura.
+
+Per rafforzare le query del sito in modo pulito servono soprattutto:
+- pagine davvero diverse tra loro
+- lessico controllato
+- blocchi editoriali sopra moduli forti
+- collegamenti interni intelligenti
+- FAQ utili
+- moduli relazionali guidati da tema
+- freschezza reale delle pagine
+- titoli e H2 scritti per query chiare
+- cluster tematici
+- evitare cannibalizzazione
+
+Formula pratica:
+query da spingere = pagina madre chiara + lessico coerente + testo introduttivo + link interni + FAQ + contenuti collegati vivi
+
+38. CSS DEL PROGETTO FUORI DALLA SANDBOX
+Il CSS del progetto deve essere organizzato in livelli chiari e non monolitici.
+
+Livelli consigliati:
+1. CSS di sistema
+2. CSS di template
+3. CSS di skin
+4. CSS di modulo/sezione
+5. CSS di pagina, solo se davvero necessario
+
+Principi:
+- niente style.css enorme che contiene tutto
+- niente CSS frontend/admin/sandbox mischiati
+- template e skin devono restare distinti
+- il CSS di modulo deve servire ai componenti/sezioni riusabili
+- il CSS di pagina deve essere eccezione controllata
+
+Regola fondamentale:
+template = struttura
+skin = veste
+
+39. VALUTAZIONE TECNOLOGICA
+
+La tecnologia usata fino ad ora è sufficiente come base, a condizione di cambiare impostazione architetturale.
+
+Valutazione:
+- PHP + MySQL su Aruba possono bastare
+- il punto critico non è tanto la tecnologia
+- il punto critico è come viene organizzato il sistema
+
+La base attuale può reggere:
+- sito pubblico
+- admin
+- template dinamici
+- skin
+- moduli pagina
+- live hub nascosto
+- QR code
+- richieste karaoke
+- richieste ballo
+- gestione contenuti
+- tag
+- parser chart
+- sandbox/plugin interno
+- salvataggio modelli
+- rendering dinamico da DB
+
+Formula corretta:
+- stack sufficiente
+- architettura da rifondare
+
+Non serve per forza cambiare tecnologia.
+Serve cambiare il modo in cui il progetto viene costruito.
+
+40. OBIETTIVO FINALE
+
+KR World deve diventare un sistema:
+- amministrabile
+- estensibile
+- modulare
+- ordinato
+- non hardcodato
+
+Il sistema deve permettere:
+- mantenimento degli URL già vivi e indicizzati
+- crescita tramite admin
+- progettazione preventiva in sandbox/design lab
+- salvataggio di modelli riutilizzabili
+- richiamo dei modelli nell’admin
+- separazione forte tra pubblico e live hub
+- separazione forte tra template, skin, asset, servizi e automazioni
+- parser chart specialistici e modulari
+- uso corretto di IP e QR in locale
+- compatibilità finale con Aruba e MySQL Aruba
+- gestione ordinata dei tag
+- rafforzamento pulito delle query tramite struttura e contenuti
