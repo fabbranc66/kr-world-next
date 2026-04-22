@@ -30,6 +30,19 @@ function current_query_string(): array
     return $query;
 }
 
+function current_post_payload(): array
+{
+    $payload = [];
+
+    foreach ($_POST as $key => $value) {
+        if (is_scalar($value)) {
+            $payload[(string) $key] = (string) $value;
+        }
+    }
+
+    return $payload;
+}
+
 function resolve_route(PDO $pdo, array $request): array
 {
     $path = normalize_request_path($request);
@@ -58,8 +71,27 @@ function resolve_route(PDO $pdo, array $request): array
         $modelKey = !empty($query['model']) ? $query['model'] : 'homepage_lab';
         $versionNo = !empty($query['version']) ? (int) $query['version'] : null;
         $selectedSourceKey = !empty($query['data_source_key']) ? $query['data_source_key'] : null;
+        $requestMethod = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 
-        if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'GET' && !empty($query['action']) && $query['action'] === 'create_model') {
+        if ($requestMethod === 'POST') {
+            $post = current_post_payload();
+
+            if (!empty($post['model'])) {
+                $modelKey = $post['model'];
+            }
+
+            $versionNo = !empty($post['version']) ? (int) $post['version'] : $versionNo;
+
+            if (!empty($post['action']) && $post['action'] === 'upload_header_logo') {
+                upload_sandbox_header_logo($pdo, $modelKey, $post, $_FILES, $request['base_path'] ?? '');
+            }
+
+            if (!empty($post['action']) && $post['action'] === 'update_header_options') {
+                update_sandbox_header_options($pdo, $modelKey, $post);
+            }
+        }
+
+        if ($requestMethod === 'GET' && !empty($query['action']) && $query['action'] === 'create_model') {
             $createdModelKey = create_sandbox_model($pdo, $query);
 
             if ($createdModelKey !== null) {
@@ -68,35 +100,61 @@ function resolve_route(PDO $pdo, array $request): array
             }
         }
 
-        if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'GET' && !empty($query['action']) && $query['action'] === 'update_state') {
+        if ($requestMethod === 'GET' && !empty($query['action']) && $query['action'] === 'update_state') {
             update_sandbox_version_state($pdo, $modelKey, $query);
         }
 
-        if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'GET' && !empty($query['action']) && $query['action'] === 'select_binding') {
+        if ($requestMethod === 'GET' && !empty($query['action']) && $query['action'] === 'select_binding') {
             update_sandbox_version_state($pdo, $modelKey, [
+                'version' => $versionNo,
                 'selected_slot' => $query['selected_slot'] ?? null,
                 'selected_binding_id' => $query['binding_id'] ?? null,
+                'selected_binding_focus' => $query['selected_binding_focus'] ?? null,
             ]);
         }
 
-        if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'GET' && !empty($query['action']) && $query['action'] === 'clone_version') {
+        if ($requestMethod === 'GET' && !empty($query['action']) && $query['action'] === 'clone_version') {
             create_sandbox_version($pdo, $modelKey, $versionNo);
         }
 
-        if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'GET' && !empty($query['action']) && $query['action'] === 'create_binding') {
+        if ($requestMethod === 'GET' && !empty($query['action']) && $query['action'] === 'create_binding') {
             create_sandbox_binding($pdo, $modelKey, $query);
         }
 
-        if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'GET' && !empty($query['action']) && $query['action'] === 'delete_binding') {
+        if ($requestMethod === 'GET' && !empty($query['action']) && $query['action'] === 'delete_binding') {
             delete_sandbox_binding($pdo, $modelKey, $query);
         }
 
-        if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'GET' && !empty($query['action']) && $query['action'] === 'move_binding') {
+        if ($requestMethod === 'GET' && !empty($query['action']) && $query['action'] === 'move_binding') {
             move_sandbox_binding($pdo, $modelKey, $query);
         }
 
-        if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'GET' && !empty($query['action']) && $query['action'] === 'update_binding') {
+        if ($requestMethod === 'GET' && !empty($query['action']) && $query['action'] === 'reposition_binding') {
+            reposition_sandbox_binding($pdo, $modelKey, $query);
+        }
+
+        if ($requestMethod === 'GET' && !empty($query['action']) && $query['action'] === 'update_binding') {
             update_sandbox_binding_properties($pdo, $modelKey, $query);
+        }
+
+        if ($requestMethod === 'GET' && !empty($query['action']) && $query['action'] === 'update_slot_options') {
+            update_sandbox_slot_options($pdo, $modelKey, $query);
+        }
+
+        if ($requestMethod === 'GET' && !empty($query['action']) && $query['action'] === 'update_body_background') {
+            update_sandbox_body_background($pdo, $modelKey, $query);
+        }
+
+        if ($requestMethod === 'GET' && !empty($query['action']) && $query['action'] === 'update_page_canvas') {
+            update_sandbox_page_canvas($pdo, $modelKey, $query);
+        }
+
+        if ($requestMethod === 'GET' && !empty($query['action']) && $query['action'] === 'update_header_options') {
+            update_sandbox_header_options($pdo, $modelKey, $query);
+        }
+
+        if ($requestMethod === 'GET' && !empty($query['action']) && $query['action'] === 'update_footer_options') {
+            update_sandbox_footer_options($pdo, $modelKey, $query);
         }
 
         $sandbox = fetch_sandbox_model_by_key($pdo, $modelKey, $versionNo, $selectedSourceKey);
