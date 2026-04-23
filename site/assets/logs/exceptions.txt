@@ -1,1 +1,0 @@
-2026-04-23 16:26:04	admin	http://localhost/kr-world-next/admin/setup/template/navJSON/	SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'FileValidatorZip' for key 'class' (C:\xampp\htdocs\kr-world-next\wire\core\WireDatabasePDOStatement.php:168)
