@@ -1,0 +1,7 @@
+2026-04-23 16:25:08	guest	http://localhost/kr-world-next/http404/	Installed module 'ProcessRecentPages'
+2026-04-23 16:25:09	guest	http://localhost/kr-world-next/http404/	Installed module 'AdminThemeUikit'
+2026-04-23 16:25:09	guest	http://localhost/kr-world-next/http404/	Uninstalled module 'AdminThemeDefault'
+2026-04-23 16:25:21	guest	http://localhost/kr-world-next/admin/login/	Installed module 'ProcessLogger'
+2026-04-23 16:25:21	guest	http://localhost/kr-world-next/admin/login/	Installed module 'InputfieldIcon'
+2026-04-23 16:26:02	admin	http://localhost/kr-world-next/admin/setup/field/navJSON/	Installed module 'FileValidatorZip'
+2026-04-23 16:26:14	admin	http://localhost/kr-world-next/admin/setup/template/edit?id=29	Installed module 'InputfieldTextTags'
